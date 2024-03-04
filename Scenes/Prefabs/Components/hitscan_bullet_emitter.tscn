@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs7q52xf4n30i"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Components/hitscan_bullet_emitter.gd" id="1_bwmyu"]
+[ext_resource type="PackedScene" uid="uid://08sg7uqeo1ku" path="res://Scenes/Prefabs/VFX/bullet_hit_effect.tscn" id="2_l1ft4"]
+
+[node name="HitscanBulletEmitter" type="Node3D"]
+script = ExtResource("1_bwmyu")
+bullet_hit_effect = ExtResource("2_l1ft4")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dprr80xbg0iew"
+path="res://.godot/imported/6- The Veil of Night.wav-f0087cc9c2e4ad708728b4a70cd499f7.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/6- The Veil of Night.wav"
+dest_files=["res://.godot/imported/6- The Veil of Night.wav-f0087cc9c2e4ad708728b4a70cd499f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

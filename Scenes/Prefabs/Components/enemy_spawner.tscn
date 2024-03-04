@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cargxavcncfkj"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Components/enemy_spawner.gd" id="1_ig5th"]
+[ext_resource type="PackedScene" uid="uid://btv4nuyi047t7" path="res://Scenes/Prefabs/Characters/Enemies/tree_enemy.tscn" id="2_d2s57"]
+[ext_resource type="PackedScene" uid="uid://dy0ng0gt7yfv1" path="res://Scenes/Prefabs/Characters/Enemies/skull_enemy.tscn" id="3_6hreu"]
+
+[node name="EnemySpawner" type="Node3D"]
+script = ExtResource("1_ig5th")
+tree_enemy = ExtResource("2_d2s57")
+skull_enemy = ExtResource("3_6hreu")

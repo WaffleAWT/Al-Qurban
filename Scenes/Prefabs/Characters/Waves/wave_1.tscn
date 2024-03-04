@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhby3cvp04skp"]
+
+[ext_resource type="PackedScene" uid="uid://btv4nuyi047t7" path="res://Scenes/Prefabs/Characters/Enemies/tree_enemy.tscn" id="1_5wcg5"]
+
+[node name="Wave1" type="Node3D"]
+
+[node name="TreeEnemy" parent="." instance=ExtResource("1_5wcg5")]
+
+[node name="TreeEnemy2" parent="." instance=ExtResource("1_5wcg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="TreeEnemy3" parent="." instance=ExtResource("1_5wcg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)

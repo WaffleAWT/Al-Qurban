@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ld7nwdesktt"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Components/rocket_spawner.gd" id="1_y3kt2"]
+[ext_resource type="PackedScene" uid="uid://348pv2ipn2p7" path="res://Scenes/Prefabs/Components/rocket.tscn" id="2_p5fbj"]
+
+[node name="RocketSpawner" type="Node3D"]
+script = ExtResource("1_y3kt2")
+rocket = ExtResource("2_p5fbj")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://oiqntwkvwy42"]
+
+[ext_resource type="Texture2D" uid="uid://b3vqlk1243fff" path="res://Assets/Textures/VFX/Kenney Particles/fire_02.png" id="1_1mxfq"]
+[ext_resource type="Script" path="res://Scripts/Prefabs/Components/fireball.gd" id="1_6dwgl"]
+[ext_resource type="PackedScene" uid="uid://cmpau8w5j0vjo" path="res://Scenes/Prefabs/Components/skull_explosion.tscn" id="2_q7dbh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l7sv4"]
+
+[sub_resource type="Gradient" id="Gradient_upxqh"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rockb"]
+gradient = SubResource("Gradient_upxqh")
+
+[sub_resource type="Curve" id="Curve_wdy7v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.323864, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2r783"]
+curve = SubResource("Curve_wdy7v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ppxx5"]
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_2r783")
+color_ramp = SubResource("GradientTexture1D_rockb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1embt"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1mxfq")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_b14pu"]
+material = SubResource("StandardMaterial3D_1embt")
+
+[node name="Fireball" type="Area3D"]
+collision_mask = 7
+script = ExtResource("1_6dwgl")
+explosion = ExtResource("2_q7dbh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_l7sv4")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 64
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ppxx5")
+draw_pass_1 = SubResource("QuadMesh_b14pu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 1, 0.603922, 1)
+light_energy = 2.0
+
+[node name="DestroyAfterTimeTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

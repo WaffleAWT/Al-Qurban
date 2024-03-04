@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxc6dr73f5mdp"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Components/damage_area.gd" id="1_gi8gt"]
+
+[node name="DamageArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gi8gt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

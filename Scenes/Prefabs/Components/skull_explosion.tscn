@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://cmpau8w5j0vjo"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Components/skull_explosion.gd" id="1_1xip3"]
+[ext_resource type="Texture2D" uid="uid://bypckp2dxdosu" path="res://Assets/Textures/VFX/Kenney Particles/circle_05.png" id="2_cuk3k"]
+[ext_resource type="AudioStream" uid="uid://bi13gkoyh6j57" path="res://Assets/Audio/Sounds/Explosion.mp3" id="3_ribej"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3qv58"]
+radius = 3.0
+
+[sub_resource type="Gradient" id="Gradient_ch8ra"]
+offsets = PackedFloat32Array(0.00675676, 0.22973, 0.425676, 0.594595, 1)
+colors = PackedColorArray(0.188235, 1, 0, 0.356863, 0, 0.521569, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bc1rw"]
+gradient = SubResource("Gradient_ch8ra")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rwjta"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_bc1rw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fuwgd"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_cuk3k")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_a8plp"]
+material = SubResource("StandardMaterial3D_fuwgd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ssm6p"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_bc1rw")
+
+[node name="Explosion" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1xip3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3qv58")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+lifetime = 5.0
+speed_scale = 0.7
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rwjta")
+draw_pass_1 = SubResource("QuadMesh_a8plp")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+lifetime = 5.0
+speed_scale = 0.7
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ssm6p")
+draw_pass_1 = SubResource("QuadMesh_a8plp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ribej")
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
